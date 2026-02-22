@@ -1,0 +1,14 @@
+FROM golang:1.26-alpine
+
+WORKDIR /usr/src/app
+
+# pre-copy/cache go.mod for pre-downloading dependencies and only redownloading them in subsequent builds if they change
+COPY go.mod go.sum ./
+RUN go get github.com/robfig/cron/v3
+
+
+COPY . .
+RUN go build -v -o /usr/local/bin/app ./...
+RUN apk update && apk add --no-cache ffmpeg
+
+CMD ["app", "-config", "/config/config.json"]
