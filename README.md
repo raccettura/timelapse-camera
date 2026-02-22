@@ -18,8 +18,7 @@ An example docker-compose.yml would be:
 ```
 services:
   timelapse-camera:
-    #image: henrygd/beszel-agent:latest
-    build: src
+    build: .
     container_name: timelapse-camera
     restart: unless-stopped
     volumes:
