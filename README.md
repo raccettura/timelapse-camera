@@ -18,7 +18,7 @@ An example docker-compose.yml would be:
 ```
 services:
   timelapse-camera:
-    build: .
+    image:  ghcr.io/raccettura/timelapse-camera
     container_name: timelapse-camera
     restart: unless-stopped
     volumes:
